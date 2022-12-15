@@ -13,7 +13,6 @@ class SongView(generics.ListCreateAPIView):
 
     serializer_class = SongSerializer
     queryset = Song.objects.all()
-    lookup_url_kwarg = "pk"
    
     def perform_create(self, serializer):
         album_obj = get_object_or_404(Album, pk=self.kwargs["pk"])
