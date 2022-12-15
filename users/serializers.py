@@ -8,14 +8,22 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ["id", "username", "email", "password", "first_name", "last_name", "is_superuser"]
     
-        ead_only_fields = ['is_superuser']
+        read_only_fields = ['is_superuser']
         extra_kwargs = {
                         "password": {"write_only": True}
                         }
-        error_message = {
-                        "username":{"unique": "A user with that username already exists."}, 
-                        "email":{"unique": "This field must be unique."},
-                        }
+        
+    username = serializers.CharField(
+        validators=[
+            UniqueValidator(
+                queryset=User.objects.all(),
+                message="A user with that username already exists.",
+            )
+        ],
+    )
+    email = serializers.EmailField(
+        validators=[UniqueValidator(queryset=User.objects.all())])
+    
     
     def create(self, validated_data: dict) -> User:
         return User.objects.create_superuser(**validated_data)
