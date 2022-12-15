@@ -5,8 +5,8 @@ class Song(models.Model):
     class Meta:
         ordering = ("id",)
 
-    title = models.CharField(max_length=255)
-    duration = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, blank=False, null=False)
+    duration = models.CharField(max_length=255, blank=False, null=False)
 
     album = models.ForeignKey(
         "albums.Album",
