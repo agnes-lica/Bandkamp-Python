@@ -1,71 +1,88 @@
-# M5 - BandKamp Generic View
+# BandKamp
 
-## Instalação dos pacotes de teste
+Projeto backend de uma plataforma de musica.
 
-- Verifique se os pacotes `pytest` e/ou `pytest-testdox` estão instalados globalmente em seu sistema:
-```shell
-pip list
-```
-- Caso seja listado o `pytest` e/ou `pytest-testdox` e/ou `pytest-django` em seu ambiente global, utilize os seguintes comando para desinstalá-los globalmente:
-```shell
-pip uninstall pytest
-```
+O desafio é:
 
-```shell
-pip uninstall pytest-testdox
-```
+*"Seu objetivo nesse projeto é adequar um sistema 'legado' que inicialmente já está desenvolvido com APIView e sqlite3, fazendo a transição para Generic Views, Model Serializer e Postgres, além de documentar e de verificar e manter a integridade das funcionalidades já existentes."*
 
-```shell
-pip uninstall pytest-django
-```
+## Stack utilizada
 
-A partir disso, prossiga com os passos:
+Para o estudo foram escolhidas as tecnologias:
 
-1. Crie seu ambiente virtual:
+**Back-end:** Python, Django, PostgreSQL.
+
+**Testes:** Pytest.
+
+**Ambiente:** Venv.
+## Rodando localmente
+
+Clone o projeto
+
 ```bash
-python -m venv venv
+  git clone git@github.com:agnes-lica/Bandkamp-Python.git
 ```
 
-2. Ative seu venv:
+Entre no diretório do projeto
+
+```bash
+  cd Bandkamp
+```
+
+Inicie o servidor
+
 ```bash
 # linux:
-source venv/bin/activate
+  source venv/bin/activate
 
 # windows:
-.\venv\Scripts\activate
+  .\venv\Scripts\activate 
 ```
 
-3. Instale o pacote `pytest-testdox`:
-```shell
-pip install pytest-testdox pytest-django
+Instale as dependências
+
+```bash
+  pip install -r requirements. txt
 ```
 
+## Rodando os testes
 
-4. Agora é só rodar os testes no diretório principal do projeto:
-```shell
-pytest --testdox -vvs
+#### Rodar todos os testes
+```bash
+ pytest --testdox -vvs
 ```
 
-5. Caso queira um log mais resumido, basta executar com os testes sem as flags **verbose**:
-```shell
-pytest --testdox
+#### Rodar testes por users
+```bash
+ pytest --testdox -vvs tests/users/
 ```
 
-## Rodando os testes por partes
-
-Caso você tenha interesse em rodar apenas um diretório de testes específico, pode utilizar o comando:
-
-- Rodando testes de users:
-```python
-pytest --testdox -vvs tests/users/
+#### Rodar testes por albuns
+```bash 
+ pytest --testdox -vvs tests/albums/
 ```
 
-- Rodando testes de albums:
-```python
-pytest --testdox -vvs tests/albums/
+#### Rodar testes por songs
+```bash 
+ pytest --testdox -vvs tests/songs/
 ```
 
-- Rodando testes de songs:
-```python
-pytest --testdox -vvs tests/songs/
-```
+## Documentação da API
+
+#### Endpoints
+
+| Método   | Endpoint       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `POST`      | `/api/users/` | Criação de usuário|
+| `PATCH`      | `api/users/<int:pk>/` | Edita o usuário |
+| `POST`      | `/api/users/login/` | Autenticação do usuário |
+| `POST`      | `api/albums` | Cria um album de musica |
+| `POST`      | `api/albums/<int:pk>/songs/` | Cria uma musica e relaciona com um album |
+
+## Contato
+
+Para entrar em contato comigo me mande um e-mail ou uma mensagem nas redes sociais:
+
+- [github](https://www.github.com/agnes-lica)
+- [LinkedIn](https://www.linkedin.com/in/agnesmr/)
+- E-mail: agnes.lica@gmail.com
